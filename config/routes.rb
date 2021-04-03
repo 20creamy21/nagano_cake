@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
+
+  devise_scope :admin do
+    get    "admin/sign_in"  => "devise/sessions#new"
+    post   "admin/sign_in"  => "devise/sessions#create"
+    delete "admin/sign_out" => "devise/sessions#destroy"
+  end
+
   namespace :admin do
-    devise_scope :admins do
-      get    "sign_in"  => "/admin/sessions#new"
-      post   "sign_in"  => "/admin/sessions#create"
-      delete "sign_out" => "/admin/sessions#destroy"
-    end
     root to: "homes#top"
     resources :items, only:[:index, :new, :create, :show, :edit, :update]
     resources :genres, only:[:index, :create, :edit, :update]
