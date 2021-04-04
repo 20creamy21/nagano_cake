@@ -10,6 +10,13 @@
   </head>
 
   <body>
+
+    <header>
+      <%= link_to "ログアウト", admin_sign_out_path, method: 'delete' %>
+    </header>
+
     <%= yield %>
+
   </body>
+
 </html>
