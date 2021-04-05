@@ -1,0 +1,29 @@
+<h1>商品新規登録ページ</h1>
+
+<%= form_with model: @item, url: admin_items_path, local:true do |f| %>
+
+  <label for="name">商品名</label>
+  <div>
+   <%= f.text_field :name, autofocus: true, id:"name" %>
+  </div>
+
+  <label>商品画像</label>
+  <div>
+   <%= f.attachment_field :image %>
+  </div>
+
+  <label for="introduction">商品説明文</label>
+  <div>
+   <%= f.text_field :introduction, autofocus: true, id:"introduction" %>
+  </div>
+
+  <label for="price">税抜価格(円)</label>
+  <div>
+   <%= f.text_field :price, autofocus: true, id:"price" %>
+  </div>
+
+  <div>
+   <%= f.submit "登録" %>
+  </div>
+
+<% end %>
