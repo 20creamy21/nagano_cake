@@ -20,7 +20,17 @@ Rails.application.routes.draw do
     resources :orders, only:[:update]
   end
 
-  namespace :public do
+  #   namespace :public do
+  #   root to: "homes#top"
+  #   get '/about' => 'homes#about'
+  #   resources :items, only:[:index, :show]
+  #   resources :customers, only:[:show, :edit, :update, :unsubscribe, :withdraw]
+  #   resources :cart_items, only:[:index, :update, :destroy, :destroy_all, :create]
+  #   resources :orders, only:[:new, :comfirm, :complete, :create, :index, :show]
+  #   resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+  # end
+
+  scope module: :public do
     root to: "homes#top"
     get '/about' => 'homes#about'
     resources :items, only:[:index, :show]
