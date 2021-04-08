@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
 
   devise_for :admin, controllers: {
-  sessions: 'admin/sessions',
-  registrations: 'admin/registrations',
-  passwords: 'admin/passwords'
+    sessions: 'admin/sessions',
+    registrations: 'admin/registrations',
+    passwords: 'admin/passwords'
   }
 
   devise_for :customers, controllers: {
-  sessions: 'public/customers/sessions',
-  registrations: 'public/registrations',
-  passwords: 'public/passwords'
+    sessions: 'public/customers/sessions',
+    registrations: 'public/customers/registrations',
+    passwords: 'public/customers/passwords'
   }
 
   namespace :admin do
