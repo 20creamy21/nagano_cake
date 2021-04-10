@@ -1,29 +1,29 @@
-<h1>商品情報編集ページ</h1>
+<h1>商品編集</h1>
 
 <%= form_with model: @item, url: admin_item_path(@item), local:true do |f| %>
-
-  <label for="name">商品名</label>
-  <div>
-   <%= f.text_field :name, autofocus: true, id:"name" %>
-  </div>
 
   <label>商品画像</label>
   <div>
    <%= f.attachment_field :image %>
   </div>
 
-  <label for="introduction">商品説明文</label>
+  <label for="name">商品名</label>
+  <div>
+   <%= f.text_field :name, autofocus: true, id:"name" %>
+  </div>
+
+  <label for="introduction">商品説明</label>
   <div>
    <%= f.text_field :introduction, autofocus: true, id:"introduction" %>
   </div>
 
-  <label for="price">税抜価格(円)</label>
+  <label for="price">税抜価格</label>
   <div>
    <%= f.text_field :price, autofocus: true, id:"price" %>
   </div>
 
   <div>
-   <%= f.submit "更新" %>
+   <%= f.submit "変更を保存" %>
   </div>
 
 <% end %>
