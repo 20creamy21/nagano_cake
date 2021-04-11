@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
 
-  before_action :authenticate_admin!, except: [:top]
+  before_action :authenticate_admin!, except: [:top, :index]
 
   def index
     @items = Item.all
