@@ -2,7 +2,11 @@
 
 class Public::Customers::RegistrationsController < Devise::RegistrationsController
 
-  def after_inactive_sign_up_path_for(resource)
+  #def after_inactive_sign_up_path_for(resource)
+  #  customers_my_page_path(resource)
+  #end
+
+  def after_sign_up_path_for(resource)
     customers_my_page_path(resource)
   end
 

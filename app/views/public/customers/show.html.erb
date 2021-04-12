@@ -1,3 +1,30 @@
 <%= render 'public/public' %>
 
-<h1>My page</h1>
+<h2>マイページ</h2>
+
+
+<h2>登録情報</h2>
+
+<%= link_to "編集する", customers_edit_path %>
+
+<h3>氏名</h3>
+<%= @customer.last_name + @customer.first_name %>
+
+<h3>カナ</h3>
+<%= @customer.last_name_kana + @customer.first_name_kana %>
+
+<h3>郵便番号</h3>
+<%= @customer.postal_code %>
+
+<h3>住所</h3>
+<%= @customer.address %>
+
+<h3>電話番号</h3>
+<%= @customer.telephone_number %>
+
+<h3>メールアドレス</h3>
+<%= @customer.email %>
+
+
+<h2>注文履歴</h2>
+<%= link_to "一覧を見る", orders_path %>
