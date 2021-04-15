@@ -1,8 +1,7 @@
 <header>
       <% if customer_signed_in? %>
         <ul>
-          <li>ようこそ、○○さん！</li>
-          <!--後で指定する↑-->
+          <li>ようこそ、<%= customer.last_name %>さん！</li>
           <li>
             <%= link_to "マイページ", customers_my_page_path %>
           </li>

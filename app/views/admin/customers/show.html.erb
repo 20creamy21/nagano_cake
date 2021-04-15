@@ -39,6 +39,15 @@
   <%= @customer.email %>
 </div>
 
+<div>会員ステータス</div>
+<div>
+  <% if @customer.is_active == false %>
+    <div>退会</div>
+  <% else %>
+    <div>有効</div>
+  <% end %>
+</div>
+
 <%= link_to "編集する", edit_admin_customer_path %>
 
 <%= link_to "注文履歴一覧を見る", admin_root_path %>

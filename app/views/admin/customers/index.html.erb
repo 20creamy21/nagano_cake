@@ -8,6 +8,7 @@
       <th>会員ID</th>
       <th>氏名</th>
       <th>メールアドレス</th>
+      <th>ステータス</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,13 @@
     <td><%= customer.id %></td>
     <td><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer) %></td>
     <td><%= customer.email %></td>
+    <td>
+      <% if customer.is_active == false %>
+       <div>退会</div>
+      <% else %>
+       <div>有効</div>
+      <% end %>
+    </td>
    </tr>
    <% end %>
   </tbody>
