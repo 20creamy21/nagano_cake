@@ -2,8 +2,19 @@
 
 <h2>注文情報入力</h2>
 
-<h2>支払方法</h2>
 
+  <div>
+    <%= form_with model: @order, url: orders_confirm_path, local:true do |f| %>
+
+    <h2>支払方法</h2>
+    <%= f.select payment_method, [["クレジットカード”,0], ["銀行振込”,1]] %>
+
+    <h2>お届け先住所</h2>
+
+
+    <%= f.submit "確認画面へ進む" %>
+    <% end %>
+  </div>
 
 <h2>お届け先</h2>
 
