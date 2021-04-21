@@ -6,18 +6,16 @@
   <div>
     <%= form_with model: @order, url: orders_confirm_path, local:true do |f| %>
 
-    <h2>支払方法</h2>
-    <%= f.select payment_method, [["クレジットカード”,0], ["銀行振込”,1]] %>
+      <h2>支払方法</h2>
+      <%#= f.select :payment_method, [["クレジットカード",0], ["銀行振込",1]] %>
+      <%= f.collection_radio_buttons :payment_method, Order.payment_methods, :last , :first %>
 
-    <h2>お届け先住所</h2>
+      <h2>お届け先</h2>
+      <%= @customer.address %>
 
+      <div>
+        <%= f.submit "確認画面へ進む" %>
+      </div>
 
-    <%= f.submit "確認画面へ進む" %>
     <% end %>
   </div>
-
-<h2>お届け先</h2>
-
-<div>
-  <%= link_to "確認画面へ進む", orders_confirm_path %>
-</div>
