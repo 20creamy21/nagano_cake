@@ -8,14 +8,15 @@ class Public::OrdersController < ApplicationController
   def confirm
     @customer = current_customer
     @cart_items = CartItem.all
-    #@order = Order.new(order_params)
+    @order = Order.new(order_params)
   end
 
   def create
-    @order.address = @customer.address
+    #@order.address = @customer.address
     @order = Order.new(order_params)
     @order.save
     redirect_to orders_complete_path
+    # redirect_to cart_items_destroy_all_path
   end
 
   def index
@@ -25,7 +26,6 @@ class Public::OrdersController < ApplicationController
   def complete
     @customer = current_customer
   end
-
 
   private
 

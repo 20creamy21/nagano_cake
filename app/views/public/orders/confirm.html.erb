@@ -45,12 +45,12 @@
   </tbody>
 </table>
 
-<h2>支払情報</h2>
-<div><%= @order.payment_method %></div>
-
-<h2>お届け先</h2>
-<div><%= @order.address %></div>
-
-<div>
-  <%= link_to "注文を確定する", orders_path, method: :post %>
-</div>
+<%= form_with model: @order, url: orders_path, local:true do |f| %>
+  <h2>支払方法</h2>
+  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+  <%= f.object.payment_method %>
+  <h2>お届け先</h2>
+  <%= f.hidden_field :address, value: @order.address %>
+  <%= f.object.address %>
+  <div><%= f.submit "注文を確定する" %></div>
+<% end %>

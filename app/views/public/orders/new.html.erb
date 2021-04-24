@@ -2,16 +2,19 @@
 
 <h2>注文情報入力</h2>
 
-
   <div>
     <%= form_with model: @order, url: orders_confirm_path, local:true do |f| %>
 
       <h2>支払方法</h2>
       <%#= f.select :payment_method, [["クレジットカード",0], ["銀行振込",1]] %>
-      <%= f.collection_radio_buttons :payment_method, Order.payment_methods, :last , :first %>
+      <%= f.radio_button :payment_method, :クレジットカード %>
+			<%= f.label :payment_method, "クレジットカード" %>
+			<%= f.radio_button :payment_method, :銀行振込 %>
+			<%= f.label :payment_method, "銀行振込" %>
 
       <h2>お届け先</h2>
-      <%= @customer.address %>
+      <%= f.radio_button :address, @customer.address, checked: true %>
+      <%= f.label :address, @customer.address, {value: :address} %>
 
       <div>
         <%= f.submit "確認画面へ進む" %>
