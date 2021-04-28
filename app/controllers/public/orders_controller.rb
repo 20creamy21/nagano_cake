@@ -12,15 +12,33 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    #@order.address = @customer.address
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @order.save
+    cart_items = current_customer.cart_items
+
+    cart_items.each do |ci|
+      # OrderDetailsを作成していく
+      @order_detail = OrderDetail.new(
+        order_id: @order.id,
+        item_id: ci.item_id,
+        price: ci.item.price,
+        amount: ci.amount
+      )
+      # @order_details.order_id = @order.id
+      # @order_details.item_id = xxx
+      # ...
+      @order_detail.save
+    end
+
+    cart_items.destroy_all
     redirect_to orders_complete_path
-    # redirect_to cart_items_destroy_all_path
   end
 
   def index
     @customer = current_customer
+    Order.where(customer_id: current_customer)
+    @orders = Order.all
   end
 
   def complete
@@ -30,7 +48,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :address)
+    params.require(:order).permit(:payment_method, :address, :total_payment)
   end
 
 end
