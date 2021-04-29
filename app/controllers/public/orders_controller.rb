@@ -18,16 +18,12 @@ class Public::OrdersController < ApplicationController
     cart_items = current_customer.cart_items
 
     cart_items.each do |ci|
-      # OrderDetailsを作成していく
       @order_detail = OrderDetail.new(
         order_id: @order.id,
         item_id: ci.item_id,
         price: ci.item.price,
         amount: ci.amount
       )
-      # @order_details.order_id = @order.id
-      # @order_details.item_id = xxx
-      # ...
       @order_detail.save
     end
 
@@ -37,8 +33,17 @@ class Public::OrdersController < ApplicationController
 
   def index
     @customer = current_customer
-    Order.where(customer_id: current_customer)
-    @orders = Order.all
+    #Order.where(customer_id: current_customer)
+    #@orders = Order.all
+    @orders = Order.where(customer_id: current_customer)
+  end
+
+  def show
+    @customer = current_customer
+    #@order = Order.find(params[:id])
+    @order = Order.find(params[:id])
+    #OrderDetail.where(order_id: @order.id)
+    @order_details = OrderDetail.where(order_id: @order.id)
   end
 
   def complete
