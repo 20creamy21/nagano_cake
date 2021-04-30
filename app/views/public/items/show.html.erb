@@ -1,25 +1,35 @@
 <%= render 'public/public', customer:@customer %>
 
-<div>
-  <div>
-    <%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
-  </div>
-  <div>
-    <%= @item.name %>
-  </div>
-  <div>
-    <%= @item.introduction %>
-  </div>
-  <div>
-    ¥<%= (@item.price*1.1).to_i.to_s(:delimited) %>(税込)
-  </div>
-</div>
+<div class="container text-center mt-5 table table-striped">
 
-<%= form_with model: @cart_item, url: cart_items_path, local:true do |f| %>
-  <%= f.hidden_field :item_id, value: @item.id %>
-  <%= f.label :amount, "個数選択" %>
-  <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %>
-  <div>
-    <%= f.submit "カートに入れる" %>
+  <div class="row">
+
+    <div class="col">
+      <%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'200x200' %></td>
+    </div>
+
+    <div class="col">
+      <div class="h5 font-weight-bold">
+        <%= @item.name %>
+      </div>
+      <div class="mt-5">
+        <%= @item.introduction %>
+      </div>
+      <div class="mt-5 h5 font-weight-bold">
+        ¥<%= (@item.price*1.1).to_i.to_s(:delimited) %>(税込)
+      </div>
+          <%= form_with model: @cart_item, url: cart_items_path, local:true do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <div class="mt-5">
+              <%= f.label :amount, "個数選択" %>
+              <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %>
+            </div>
+            <div class="mt-5">
+              <%= f.submit "カートに入れる" %>
+            </div>
+          <% end %>
+    </div>
+
   </div>
-<% end %>
+
+</div>

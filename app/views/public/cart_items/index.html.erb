@@ -1,48 +1,54 @@
 <%= render 'public/public', customer:@customer %>
 
-<h2>ショッピングカート</h2>
-<div>
-  <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete %>
-</div>
+<div class="container mt-5">
 
-<table>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th></th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% array = [] %>
-    <% @cart_items.each do |cart_item| %>
-    <tr>
-      <td><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
-      <td><%= cart_item.item.name %></td>
-      <td><%= (cart_item.item.price*1.1).to_i.to_s(:delimited) %></td>
-      <% array << cart_item.item.price*1.1*cart_item.amount %>
-      <td>
-        <% cart_item.amount %>
-        <%= form_with model: cart_item, url: cart_item_path(cart_item), local:true do |f| %>
-        <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %>
-        <%= f.submit "変更" %>
-        <% end %>
-      </td>
-      <td><%= (cart_item.item.price*1.1*cart_item.amount).to_i.to_s(:delimited) %></td>
-      <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="row">
+    <h2 class="col">ショッピングカート</h2>
+    <div class="col text-right"><%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class:"btn btn-outline-danger" %></div>
+  </div>
 
-<div><%= link_to "買い物を続ける", root_path %></div>
+  <table class="mt-5 table table-striped">
+    <thead>
+      <tr>
+        <th class="text-center">商品名</th>
+        <th class="text-center"></th>
+        <th class="text-center">単価（税込）</th>
+        <th class="text-center">数量</th>
+        <th class="text-center">小計</th>
+        <th class="text-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% array = [] %>
+      <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td class="text-center"><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'30x30' %></td>
+        <td class="text-center"><%= cart_item.item.name %></td>
+        <td class="text-center"><%= (cart_item.item.price*1.1).to_i.to_s(:delimited) %></td>
+        <% array << cart_item.item.price*1.1*cart_item.amount %>
+        <td>
+          <% cart_item.amount %>
+          <%= form_with model: cart_item, url: cart_item_path(cart_item), local:true do |f| %>
+          <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %>
+          <%= f.submit "変更" %>
+          <% end %>
+        </td>
+        <td class="text-center"><%= (cart_item.item.price*1.1*cart_item.amount).to_i.to_s(:delimited) %></td>
+        <td class="text-center"><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class:"btn btn-outline-danger" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<div>合計金額</div>
-<div><%= (array.sum).to_i.to_s(:delimited) %></div>
+  <div class="row mt-5">
+    <div class="col"><%= link_to "買い物を続ける", root_path, class:"btn btn-outline-primary" %></div>
+    <div class="col text-right">合計金額  <%= (array.sum).to_i.to_s(:delimited) %></div>
+  </div>
 
-<div>
-  <%= link_to "情報入力に進む", new_order_path %>
+  <div class="row mt-5">
+    <div class="col text-center">
+      <%= link_to "情報入力に進む", new_order_path, class:"btn btn-outline-success" %>
+    </div>
+  </div>
+
 </div>
