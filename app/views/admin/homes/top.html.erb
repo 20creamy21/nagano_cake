@@ -13,7 +13,7 @@
   <tbody>
     <% @orders.each do |order| %>
     <tr>
-      <td><%= order.created_at.to_s(:datetime_jp) %></td>
+      <td><%= link_to order.created_at.to_s(:datetime_jps), admin_order_path(order) %></td>
       <td><%= order.customer.last_name + order.customer.first_name %></td>
       <td><%= order.order_details.count %></td>
     </tr>
