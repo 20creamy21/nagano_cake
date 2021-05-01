@@ -1,13 +1,21 @@
 <%= render 'public/public', customer:@customer %>
 
-<h2>本当に退会しますか？</h2>
+<div class="container mt-5 text-center">
 
-<p>
-  退会すると、会員登録情報や<br>
-  これまでの購⼊履歴が閲覧できなくなります。<br>
-  退会する場合は、「退会する」をクリックしてください。
-</p>
+  <h2>本当に退会しますか？</h2>
 
-<%= link_to "退会する", customers_withdraw_path, method: 'patch' %>
+  <p class="mt-5">
+    退会すると、会員登録情報や<br>
+    これまでの購⼊履歴が閲覧できなくなります。<br>
+    退会する場合は、「退会する」をクリックしてください。
+  </p>
 
-<%= link_to "退会しない", customers_my_page_path %>
+  <div class="row mt-5">
+    <div class="col">
+      <%= link_to "退会しない", customers_my_page_path, class:"btn btn-outline-primary" %>
+      <%= "　" %>
+      <%= link_to "退会する", customers_withdraw_path, method: 'patch', class:"btn btn-outline-danger" %>
+    </div>
+  </div>
+
+</div>

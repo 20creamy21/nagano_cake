@@ -56,16 +56,22 @@
 
   <% @total_payment = (array.sum + @shipping_cost).to_i %>
 
-  <%= form_with model: @order, url: orders_path, local:true do |f| %>
-    <h2>支払方法</h2>
-    <%= f.hidden_field :payment_method, value: @order.payment_method %>
-    <%= f.object.payment_method %>
-    <h2>お届け先</h2>
-    <%= f.hidden_field :address, value: @order.address %>
-    <%= f.object.address %>
-    <%#= f.hidden_field :customer_id, value: current_customer.id %>
-    <%= f.hidden_field :total_payment, value: @total_payment %>
-    <div><%= f.submit "注文を確定する" %></div>
-  <% end %>
+    <%= form_with model: @order, url: orders_path, local:true do |f| %>
+      <div class="row mt-5">
+        <h2>支払方法</h2>
+        <%= f.hidden_field :payment_method, value: @order.payment_method %>
+        <%= "　" + f.object.payment_method %>
+      </div>
+      <div class="row mt-5">
+        <h2>お届け先</h2>
+        <%= f.hidden_field :address, value: @order.address %>
+        <%= "　〒" + @customer.postal_code + "　" + f.object.address %><br>
+        <%= "　" + @customer.last_name + @customer.first_name %>
+        <%= f.hidden_field :total_payment, value: @total_payment %>
+      </div>
+      <div class="col mt-5 text-center">
+        <%= f.submit "注文を確定する", class:"btn btn-outline-success" %>
+      </div>
+    <% end %>
 
 </div>
