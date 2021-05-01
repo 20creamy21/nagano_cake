@@ -1,62 +1,71 @@
 <%= render 'public/public', customer:@customer %>
 
-<h2>注文情報確認</h2>
+<div class="container mt-5">
 
-<table>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th></th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% array = [] %>
-    <% @cart_items.each do |cart_item| %>
-    <tr>
-      <td><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
-      <td><%= cart_item.item.name %></td>
-      <td><%= (cart_item.item.price*1.1).to_i.to_s(:delimited) %></td>
-      <% array << cart_item.item.price*1.1*cart_item.amount %>
-      <td><%= cart_item.amount %></td>
-      <td><%= (cart_item.item.price*1.1*cart_item.amount).to_i.to_s(:delimited) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+    <h2>注文情報確認</h2>
 
-<% @shipping_cost = 800 %>
+    <div class="row mt-5">
+      <div class="col">
+      <table class="table table-striped mr-5">
+        <thead>
+          <tr>
+            <th class="text-center">商品名</th>
+            <th class="text-center"></th>
+            <th class="text-center">単価（税込）</th>
+            <th class="text-center">数量</th>
+            <th class="text-center">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% array = [] %>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td class="text-center"><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'30x30' %></td>
+            <td class="text-center"><%= cart_item.item.name %></td>
+            <td class="text-center"><%= (cart_item.item.price*1.1).to_i.to_s(:delimited) %></td>
+            <% array << cart_item.item.price*1.1*cart_item.amount %>
+            <td class="text-center"><%= cart_item.amount %></td>
+            <td class="text-center"><%= (cart_item.item.price*1.1*cart_item.amount).to_i.to_s(:delimited) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
 
-<table>
-  <tbody>
-    <tr>
-      <td>送料</td>
-      <td>800</td>
-    </tr>
-    <tr>
-      <td>商品合計</td>
-      <td><%= (array.sum).to_i.to_s(:delimited) %></td>
-    </tr>
-    <tr>
-      <td>請求金額</td>
-      <td><%= (array.sum + @shipping_cost).to_i.to_s(:delimited) %></td>
-    </tr>
-  </tbody>
-</table>
+      <% @shipping_cost = 800 %>
 
-<% @total_payment = (array.sum + @shipping_cost).to_i %>
+      <div class="col-md-3">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>送料</td>
+            <td>800</td>
+          </tr>
+          <tr>
+            <td>商品合計</td>
+            <td><%= (array.sum).to_i.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td>請求金額</td>
+            <td><%= (array.sum + @shipping_cost).to_i.to_s(:delimited) %></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
 
-<%= form_with model: @order, url: orders_path, local:true do |f| %>
-  <h2>支払方法</h2>
-  <%= f.hidden_field :payment_method, value: @order.payment_method %>
-  <%= f.object.payment_method %>
-  <h2>お届け先</h2>
-  <%= f.hidden_field :address, value: @order.address %>
-  <%= f.object.address %>
-  <%#= f.hidden_field :customer_id, value: current_customer.id %>
-  <%= f.hidden_field :total_payment, value: @total_payment %>
-  <div><%= f.submit "注文を確定する" %></div>
-<% end %>
+  <% @total_payment = (array.sum + @shipping_cost).to_i %>
+
+  <%= form_with model: @order, url: orders_path, local:true do |f| %>
+    <h2>支払方法</h2>
+    <%= f.hidden_field :payment_method, value: @order.payment_method %>
+    <%= f.object.payment_method %>
+    <h2>お届け先</h2>
+    <%= f.hidden_field :address, value: @order.address %>
+    <%= f.object.address %>
+    <%#= f.hidden_field :customer_id, value: current_customer.id %>
+    <%= f.hidden_field :total_payment, value: @total_payment %>
+    <div><%= f.submit "注文を確定する" %></div>
+  <% end %>
+
+</div>

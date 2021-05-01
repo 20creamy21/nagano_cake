@@ -1,24 +1,36 @@
 <%= render 'public/public', customer:@customer %>
 
+<div class="container mt-5">
+
 <h2>注文情報入力</h2>
 
   <div>
     <%= form_with model: @order, url: orders_confirm_path, local:true do |f| %>
 
-      <h2>支払方法</h2>
+      <h3 class="mt-5">支払方法</h3>
       <%#= f.select :payment_method, [["クレジットカード",0], ["銀行振込",1]] %>
-      <%= f.radio_button :payment_method, :クレジットカード %>
-			<%= f.label :payment_method, "クレジットカード" %>
-			<%= f.radio_button :payment_method, :銀行振込 %>
-			<%= f.label :payment_method, "銀行振込" %>
+      <div class="mt-3">
+        <%= f.radio_button :payment_method, :クレジットカード %>
+			  <%= f.label :payment_method, "クレジットカード" %>
+      </div>
+      <div class="mt-3">
+        <%= f.radio_button :payment_method, :銀行振込 %>
+			  <%= f.label :payment_method, "銀行振込" %>
+      </div>
 
-      <h2>お届け先</h2>
-      <%= f.radio_button :address, @customer.address, checked: true %>
-      <%= f.label :address, @customer.address, {value: :address} %>
+      <h3 class="mt-5">お届け先</h3>
+      <div class="mt-3">
+        <%= f.radio_button :address, @customer.address, checked: true %>
+        <%= f.label :address, "ご自身の住所", {value: :address} %><br>
+        <%= "　　〒" + @customer.postal_code + "　" + @customer.address %><br>
+        <%= "　　" + @customer.last_name + @customer.first_name %>
+      </div>
 
-      <div>
-        <%= f.submit "確認画面へ進む" %>
+      <div class="mt-5">
+        <%= f.submit "確認画面へ進む", class: 'btn btn-primary' %>
       </div>
 
     <% end %>
+  </div>
+
   </div>
