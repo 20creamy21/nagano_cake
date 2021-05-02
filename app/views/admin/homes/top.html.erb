@@ -1,22 +1,27 @@
 <%= render 'admin/admin' %>
 
-<h1>注文履歴一覧</h1>
+<div class="container mt-5">
 
-<table>
-  <thead>
-    <tr>
-      <th>購入日時</th>
-      <th>購入者</th>
-      <th>注文個数</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
-    <tr>
-      <td><%= link_to order.created_at.to_s(:datetime_jps), admin_order_path(order) %></td>
-      <td><%= order.customer.last_name + order.customer.first_name %></td>
-      <td><%= order.order_details.count %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h2>注文履歴一覧</h2>
+
+  <table class="table table-striped mr-5">
+    <thead>
+      <tr>
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.created_at.to_s(:datetime_jps), admin_order_path(order), class:"text-dark border-bottom border-dark" %></td>
+        <td><%= order.customer.last_name + order.customer.first_name %></td>
+        <td><%= order.order_details.count %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @orders %>
+
+</div>

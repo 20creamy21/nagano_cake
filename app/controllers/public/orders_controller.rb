@@ -35,7 +35,8 @@ class Public::OrdersController < ApplicationController
     @customer = current_customer
     #Order.where(customer_id: current_customer)
     #@orders = Order.all
-    @orders = Order.where(customer_id: current_customer)
+    #@orders = Order.where(customer_id: current_customer)
+    @orders = Order.where(customer_id: current_customer).page(params[:page]).reverse_order
   end
 
   def show
