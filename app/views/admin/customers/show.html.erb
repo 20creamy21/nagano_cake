@@ -1,53 +1,78 @@
 <%= render 'admin/admin' %>
 
-<h2>
-  <%= @customer.last_name + @customer.first_name %>さんの会員詳細
-</h2>
+<div class="container mt-5">
 
-<div>会員ID</div>
-<div>
-  <%= @customer.id %>
+  <h2>
+    <%= @customer.last_name + @customer.first_name %>さんの会員詳細
+  </h2>
+
+  <div class="row mt-5">
+    <div class="col">会員ID</div>
+    <div class="col">
+      <%= @customer.id %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">氏名</div>
+    <div class="col">
+      <%= @customer.last_name + @customer.first_name %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">フリガナ</div>
+    <div class="col">
+      <%= @customer.last_name_kana + @customer.first_name_kana %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">郵便番号</div>
+    <div class="col">
+      <%= @customer.postal_code %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">住所</div>
+    <div class="col">
+      <%= @customer.address %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">電話番号</div>
+    <div class="col">
+      <%= @customer.telephone_number %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">メールアドレス</div>
+    <div class="col">
+      <%= @customer.email %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">会員ステータス</div>
+    <div class="col">
+      <% if @customer.is_active == false %>
+        <div>退会</div>
+      <% else %>
+        <div>有効</div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col text-center">
+      <%= link_to "編集する", edit_admin_customer_path, class:"btn btn-outline-success" %>
+    </div>
+    <div class="col text-center">
+      <%= link_to "注文履歴一覧を見る", admin_root_path, class:"btn btn-outline-primary" %>
+    </div>
+  </div>
+
 </div>
-
-<div>氏名</div>
-<div>
-  <%= @customer.last_name + @customer.first_name %>
-</div>
-
-<div>フリガナ</div>
-<div>
-  <%= @customer.last_name_kana + @customer.first_name_kana %>
-</div>
-
-<div>郵便番号</div>
-<div>
-  <%= @customer.postal_code %>
-</div>
-
-<div>住所</div>
-<div>
-  <%= @customer.address %>
-</div>
-
-<div>電話番号</div>
-<div>
-  <%= @customer.telephone_number %>
-</div>
-
-<div>メールアドレス</div>
-<div>
-  <%= @customer.email %>
-</div>
-
-<div>会員ステータス</div>
-<div>
-  <% if @customer.is_active == false %>
-    <div>退会</div>
-  <% else %>
-    <div>有効</div>
-  <% end %>
-</div>
-
-<%= link_to "編集する", edit_admin_customer_path %>
-
-<%= link_to "注文履歴一覧を見る", admin_root_path %>

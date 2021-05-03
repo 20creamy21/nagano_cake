@@ -1,30 +1,32 @@
 <%= render 'admin/admin' %>
 
-<h1>商品一覧</h1>
+<div class="container mt-5">
 
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>商品ID</th>
-        <th>商品名</th>
-        <th>税抜価格</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @items.each do |item| %>
+  <h2 class="row">商品一覧</h2>
+
+  <div class="row mt-5">
+    <table class="table table-striped col mr-5">
+      <thead>
         <tr>
-          <td>
-            <%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-          </td>
-          <td><%= link_to item.name, admin_item_path(item) %></td>
-          <td><%= item.price %></td>
+          <th class="text-center">商品ID</th>
+          <th class="text-center">商品名</th>
+          <th class="text-center">税抜価格</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td class="text-center"><%= item.id %></td>
+            <td class="text-center"><%= link_to item.name, admin_item_path(item), class: "text-dark border-bottom border-dark" %></td>
+            <td class="text-center"><%= item.price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<button>
-  <%= link_to "商品新規登録", new_admin_item_path %>
-</button>
+  <div class="row mt-5">
+    <%= link_to "商品新規登録", new_admin_item_path, class: "btn btn-outline-primary" %>
+  </div>
+
+</div>

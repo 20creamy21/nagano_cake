@@ -3,7 +3,7 @@ class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!, except: [:top]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.all.page(params[:page]).order(:id)
   end
 
   def show

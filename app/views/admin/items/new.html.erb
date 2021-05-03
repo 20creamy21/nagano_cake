@@ -1,31 +1,46 @@
 <%= render 'admin/admin' %>
 
-<h1>商品新規登録ページ</h1>
+<div class="container mt-5">
 
-<%= form_with model: @item, url: admin_items_path, local:true do |f| %>
+  <h1>商品新規登録ページ</h1>
 
- <label>商品画像</label>
- <div>
-  <%= f.attachment_field :image %>
- </div>
+  <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
 
- <label for="name">商品名</label>
- <div>
-  <%= f.text_field :name, autofocus: true, id:"name" %>
- </div>
+  <div class="field row mt-3 ml-3 mt-5">
+   <label class="col-md-2">商品画像</label>
+   <div class="col">
+    <%= f.attachment_field :image %>
+   </div>
+  </div>
 
- <label for="introduction">商品説明</label>
- <div>
-  <%= f.text_field :introduction, autofocus: true, id:"introduction" %>
- </div>
+  <div class="field row mt-3 ml-3 mt-5">
+   <label for="name" class="col-md-2">商品名</label>
+   <div class="col">
+    <%= f.text_field :name, autofocus: true, id:"name" %>
+   </div>
+  </div>
 
- <label for="price">税抜価格</label>
- <div>
-  <%= f.text_field :price, autofocus: true, id:"price" %>円
- </div>
+  <div class="field row mt-3 ml-3 mt-5">
+   <label for="introduction" class="col-md-2">商品説明</label>
+   <div class="col">
+    <%= f.text_field :introduction, autofocus: true, id:"introduction" %>
+   </div>
+  </div>
 
- <div>
-  <%= f.submit "新規登録" %>
- </div>
+  <div class="field row mt-3 ml-3 mt-5">
+   <label for="price" class="col-md-2">税抜価格</label>
+   <div class="col">
+    <%= f.text_field :price, autofocus: true, id:"price" %> 円
+   </div>
+  </div>
 
-<% end %>
+  <div class="row mt-3 ml-3 mt-5">
+   <div class="col-md-2"></div>
+   <div class="col">
+    <%= f.submit "新規登録", class:"btn btn-outline-primary" %>
+   </div>
+  </div>
+
+ <% end %>
+
+</div>

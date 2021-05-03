@@ -1,28 +1,32 @@
 <%= render 'admin/admin' %>
 
-<h1>商品詳細</h1>
+<div class="container mt-5">
 
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>商品名</th>
-        <th>商品説明</th>
-        <th>税込価格（税抜価格）</th>
-      </tr>
-    </thead>
-    <tbody>
+  <h2 class="row">商品詳細</h2>
+
+  <div class="row mt-5">
+    <table class="table table-striped col mr-5">
+      <thead>
         <tr>
-          <td><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
-          <td><%= @item.name %></td>
-          <td><%= @item.introduction %></td>
-          <td><%= (@item.price*1.1).to_i %>円(<%= @item.price %>円)</td>
+          <th class="text-center"></th>
+          <th class="text-center">商品名</th>
+          <th class="text-center">商品説明</th>
+          <th class="text-center">税込価格（税抜価格）</th>
         </tr>
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="text-center"><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+            <td class="text-center"><%= @item.name %></td>
+            <td class="text-center"><%= @item.introduction %></td>
+            <td class="text-center"><%= (@item.price*1.1).to_i %>円(<%= @item.price %>円)</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
 
-<button>
-  <%= link_to "編集する", edit_admin_item_path(@item) %>
-</button>
+  <div class=" row mt-5">
+    <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-outline-primary" %>
+  </div>
+
+</div>
