@@ -64,10 +64,18 @@
       </div>
       <div class="row mt-5">
         <h2>お届け先</h2>
-        <%= f.hidden_field :address, value: @order.address %>
-        <%= "　〒" + f.object.postal_code + "　" + f.object.address %><br>
-        <%= "　" + @customer.last_name + @customer.first_name %>
-        <%= f.hidden_field :total_payment, value: @total_payment %>
+        <div>
+          <div>
+            <%= f.hidden_field :address, value: @order.address %>
+            <%= f.hidden_field :postal_code, value: @order.postal_code %>
+            <%= "　〒" + f.object.postal_code + "　" + f.object.address %>
+          </div>
+          <div>
+            <%= f.hidden_field :name, value: @order.name %>
+            <%= "　" + f.object.name %>
+            <%= f.hidden_field :total_payment, value: @total_payment %>
+          </div>
+        </div>
       </div>
       <div class="col mt-5 text-center">
         <%= f.submit "注文を確定する", class:"btn btn-outline-success" %>
