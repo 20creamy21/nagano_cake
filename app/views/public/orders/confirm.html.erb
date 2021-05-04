@@ -65,7 +65,7 @@
       <div class="row mt-5">
         <h2>お届け先</h2>
         <%= f.hidden_field :address, value: @order.address %>
-        <%= "　〒" + @customer.postal_code + "　" + f.object.address %><br>
+        <%= "　〒" + f.object.postal_code + "　" + f.object.address %><br>
         <%= "　" + @customer.last_name + @customer.first_name %>
         <%= f.hidden_field :total_payment, value: @total_payment %>
       </div>

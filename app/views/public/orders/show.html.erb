@@ -19,8 +19,8 @@
             <tr>
               <td class="text-center"><%= @order.created_at.to_s(:datetime_jp) %></td>
               <td class="text-center">
-                <%= "〒" + @customer.postal_code %><br>
-                <%= @customer.address %><br>
+                <%= @order.postal_code %><br>
+                <%= @order.address %><br>
                 <%= @customer.last_name + @customer.first_name %>
               </td>
               <td class="text-center"><%= @order.payment_method %></td>

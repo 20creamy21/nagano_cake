@@ -15,8 +15,10 @@
    <div class="col justify-content-between d-flex">
     <% @items.last(4).each do |item| %>
     <div>
+     <%= link_to item_path(item) do %>
      <%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %><br>
-     <%= link_to item.name, item_path(item), class:"text-dark font-weight-bold" %><br>
+     <% end %>
+     <%= item.name %><br>
      ￥<%= item.price %>
     </div>
     <% end %>

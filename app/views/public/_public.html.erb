@@ -1,6 +1,11 @@
 <header class="border-bottom border-dark" style="padding:20px">
       <% if customer_signed_in? %>
         <ul>
+          <li class="logo btn btn-outline-dark">
+            <%= link_to root_path do %>
+            <%= attachment_image_tag @item, :image, :fill, 30, 24, format: 'jpeg', fallback: "no_image.jpg", size:'30x24' %>
+            <% end %>
+          </li>
           <li>ようこそ、<%= customer.last_name %>さん！</li>
           <li class="btn btn-outline-dark">
             <%= link_to "マイページ", customers_my_page_path, class:"text-dark" %>
@@ -17,6 +22,11 @@
         </ul>
       <% else %>
         <ul>
+          <li class="logo btn btn-outline-dark">
+            <%= link_to root_path do %>
+            <%= attachment_image_tag @item, :image, :fill, 30, 24, format: 'jpeg', fallback: "no_image.jpg", size:'30x24' %>
+            <% end %>
+          </li>
           <li class="btn btn-outline-dark">
             <%= link_to "About", about_path, class:"text-dark" %>
           </li>
